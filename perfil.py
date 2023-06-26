@@ -35,11 +35,11 @@ class Perfil:
 
     # Metodo do Nome
     def monta_nome(self):
-
-        self.nome = pessoa_random()
-        self.nome = str(self.nome.nome)
-        
-
+       
+        nome = pessoa_random()
+        nome = nome.nome # Teste recebe o metodo 'nome' da biblioteca "pessoa_random()"
+        nome = unidecode.unidecode(nome) # ela recebe a fitragem dos acento
+        self.nome=nome
         print (self.nome)
         return self.nome
     
@@ -54,7 +54,7 @@ class Perfil:
 
     def monta_email(self):    
         p = pessoa_random()
-        webmail = ['@gmail.com', '@hotmail.com', "@yahoo.com",  '@outlook.com']
+        webmail = ['@teste1.com', '@teste2.com', '@teste3.com', '@teste4.com']
         email= p.nome.lower()[:5] + r.choice(webmail)
         email= unidecode.unidecode(email)
         email= email.replace(' ', '' )

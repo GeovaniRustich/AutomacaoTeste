@@ -1,16 +1,25 @@
 import pyautogui, time
 from perfil import Perfil
+import fordev
 
 nomeCadastros = str(input('Insira o nome a ser colocado nos cadastros: '))
 
 codigoCentroCusto = str(input('Insira o código para cadastro de Centro de Custo e Plano de conta: '))       
 
+emailPrincipal = str(input('Digite seu email: '))
 
-formulaSisAvaliacao = str(input('Qual será a formula ultilizada: '))
+formulaSisAvaliacao = str(input('Qual será a formula ultilizada para o sistema de avaliação (Não pode conter Espaços): '))
 
-pyautogui.PAUSE = 0.5
+pyautogui.PAUSE = 0.7
 
 nomeReduzido = (f'{nomeCadastros[:3]}{nomeCadastros[6:9]}')
+
+
+aluno1 = Perfil.monta_nome(self=Perfil)
+aluno2 = Perfil.monta_nome(self=Perfil)
+alunoMain = Perfil.monta_nome(self=Perfil)
+professor = Perfil.monta_nome(self=Perfil)
+responsavel = Perfil.monta_nome(self=Perfil)
 
 class Perfis(Perfil):
     
@@ -31,6 +40,8 @@ class AbrirNavegador:
     pyautogui.press('win')
     pyautogui.write('google')
     pyautogui.press('enter')
+    with pyautogui.hold('win'):
+        pyautogui.press('up')
 
     time.sleep(1)
 
@@ -45,7 +56,7 @@ class AbrirJacad:
     pyautogui.click(x=268, y=322)
     time.sleep(0.5)
     pyautogui.doubleClick(x=129, y=1020)
-    time.sleep(2)
+    time.sleep(4)
     pyautogui.press('tab', presses=2, interval=1)
     pyautogui.press('enter')
 
@@ -62,60 +73,227 @@ class AbrirJacad:
     #clicando no Perfil
 
     time.sleep(5)
-    pyautogui.click(x=245, y=100)
-
-    with pyautogui.hold('ctrlleft'):
-        pyautogui.press('n')
-
-class CadastrarPerfil:
-    def __init__(self) -> None:
-
-        perfil = Perfis(nome='', nasc='', cpf='', email='', telefone='')
-        nasc = perfil.monta_dt_nasc()
-        nome = perfil.monta_nome()
-        cpf = perfil.monta_cpf()
-        email = perfil.monta_email()
-        telefone = perfil.gerar_telefone()
-
-        with pyautogui.hold('ctrlleft'):
-            pyautogui.press('i')
-
-        pyautogui.write(nome)
-
-        #Email do perfil
-        pyautogui.press('tab')
-        pyautogui.write(email) 
-
-        #Cpf do perfil
-        pyautogui.press('tab', presses=2, interval=0.5)
-        pyautogui.write(cpf)
-
-        #Para o RG
-        pyautogui.press('tab')
-        pyautogui.write(cpf)
-
-        #Data de Nascimento
-        pyautogui.press('tab', presses=6, interval=0.5)
-        pyautogui.write(nasc)
-
-        #Sexo
-        pyautogui.press('tab', presses=2, interval=0.5)
-        pyautogui.press('down') 
-        pyautogui.press('down')
-        pyautogui.press('enter')
-
-        #Celular
-        pyautogui.press('tab', presses=16, interval=0.5)
-        pyautogui.write(telefone)
-
-        with pyautogui.hold('ctrlleft'):
-            pyautogui.press('s')
-            
-        return None
     
-for i in range(0, 1):
-    time.sleep(1)
-    CadastrarPerfil()
+
+# class CadastrarPerfil:
+#     # def __init__(self) -> None:
+
+#         pyautogui.click(x=245, y=100)
+
+#         with pyautogui.hold('ctrlleft'):
+#           pyautogui.press('n')
+#         perfil = Perfis(nome='', nasc='', cpf='', email='', telefone='')
+#         nasc = perfil.monta_dt_nasc()
+#         cpf = perfil.monta_cpf()
+#         email = perfil.monta_email()
+#         telefone = perfil.gerar_telefone()
+
+#                         # CADASTRO DO PRIMEIRO ALUNO
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('i')
+
+#         pyautogui.write(aluno1)
+
+#         #Email do perfil
+#         pyautogui.press('tab')
+#         pyautogui.write(email) 
+
+#         #Cpf do perfil
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.write(cpf)
+
+#         #Para o RG
+#         pyautogui.press('tab')
+#         rg = fordev.generators.rg()
+#         pyautogui.write(rg)
+
+#         #Data de Nascimento
+#         pyautogui.press('tab', presses=7, interval=0.5)
+#         pyautogui.write(nasc)
+
+#         #Sexo
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.press('down') 
+#         pyautogui.press('down')
+#         pyautogui.press('enter')
+
+#         #Celular
+#         pyautogui.press('tab', presses=16, interval=0.5)
+#         pyautogui.write(telefone)
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('s')
+#         time.sleep(2)
+#                             # CADASTRO SEGUNDO ALUNO
+
+#         nasc = perfil.monta_dt_nasc()
+#         cpf = perfil.monta_cpf()
+#         email = perfil.monta_email()
+#         telefone = perfil.gerar_telefone()
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('i')
+
+#         pyautogui.write(aluno2)
+
+#         #Email do perfil
+#         pyautogui.press('tab')
+#         pyautogui.write(email) 
+
+#         #Cpf do perfil
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.write(cpf)
+
+#         #Para o RG
+#         pyautogui.press('tab')
+#         rg = fordev.generators.rg()
+#         pyautogui.write(rg)
+
+#         #Data de Nascimento
+#         pyautogui.press('tab', presses=7, interval=0.5)
+#         pyautogui.write(nasc)
+
+#         #Sexo
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.press('down') 
+#         pyautogui.press('down')
+#         pyautogui.press('enter')
+
+#         #Celular
+#         pyautogui.press('tab', presses=16, interval=0.5)
+#         pyautogui.write(telefone)
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('s')
+#         time.sleep(2)
+#                                 # CADASTRO aluno Main
+
+#         nasc = perfil.monta_dt_nasc()
+#         cpf = perfil.monta_cpf()
+#         email = perfil.monta_email()
+#         telefone = perfil.gerar_telefone()
+        
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('i')
+
+#         pyautogui.write(alunoMain)
+
+#         #Email do perfil
+#         pyautogui.press('tab')
+#         pyautogui.write(emailPrincipal) 
+
+#         #Cpf do perfil
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.write(cpf)
+
+#         #Para o RG
+#         pyautogui.press('tab')
+#         rg = fordev.generators.rg()
+#         pyautogui.write(rg)
+
+#         #Data de Nascimento
+#         pyautogui.press('tab', presses=7, interval=0.5)
+#         pyautogui.write(nasc)
+
+#         #Sexo
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.press('down') 
+#         pyautogui.press('down')
+#         pyautogui.press('enter')
+
+#         #Celular
+#         pyautogui.press('tab', presses=16, interval=0.5)
+#         pyautogui.write(telefone)
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('s')
+#         time.sleep(2) 
+#                                         # CADASTRO RESPONSAVEL
+
+#         nasc = perfil.monta_dt_nasc()
+#         cpf = perfil.monta_cpf()
+#         email = perfil.monta_email()
+#         telefone = perfil.gerar_telefone()
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('i')
+
+#         pyautogui.write(responsavel)
+
+#         #Email do perfil
+#         pyautogui.press('tab')
+#         pyautogui.write(email) 
+
+#         #Cpf do perfil
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.write(cpf)
+
+#         #Para o RG
+#         pyautogui.press('tab')
+#         rg = fordev.generators.rg()
+#         pyautogui.write(rg)
+
+#         #Data de Nascimento
+#         pyautogui.press('tab', presses=7, interval=0.5)
+#         pyautogui.write(nasc)
+
+#         #Sexo
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.press('down') 
+#         pyautogui.press('down')
+#         pyautogui.press('enter')
+
+#         #Celular
+#         pyautogui.press('tab', presses=16, interval=0.5)
+#         pyautogui.write(telefone)
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('s')
+#         time.sleep(2)
+#                                 # CADASTRO PROFESSOR
+#         nasc = perfil.monta_dt_nasc()
+#         cpf = perfil.monta_cpf()
+#         email = perfil.monta_email()
+#         telefone = perfil.gerar_telefone()
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('i')
+
+#         pyautogui.write(professor)
+
+#         #Email do perfil
+#         pyautogui.press('tab')
+#         pyautogui.write(email) 
+
+#         #Cpf do perfil
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.write(cpf)
+
+#         #Para o RG
+#         pyautogui.press('tab')
+#         rg = fordev.generators.rg()
+#         pyautogui.write(rg)
+
+#         #Data de Nascimento
+#         pyautogui.press('tab', presses=7, interval=0.5)
+#         pyautogui.write(nasc)
+
+#         #Sexo
+#         pyautogui.press('tab', presses=2, interval=0.5)
+#         pyautogui.press('down') 
+#         pyautogui.press('down')
+#         pyautogui.press('enter')
+
+#         #Celular
+#         pyautogui.press('tab', presses=16, interval=0.5)
+#         pyautogui.write(telefone)
+
+#         with pyautogui.hold('ctrlleft'):
+#             pyautogui.press('s')
+#         time.sleep(2)
+
+
 
 class CursoBase:
 
@@ -123,8 +301,8 @@ class CursoBase:
 
     #Abre a tela do Curso Base
     # pyautogui.click(x=1540, y=120)
-    pyautogui.click(x=88, y=37)
-    pyautogui.click(x=155, y=188)
+    pyautogui.click(x=100, y=40)
+    pyautogui.click(x=140, y=165)
 
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('i')
@@ -143,24 +321,26 @@ class CursoBase:
     pyautogui.press('space')
 
     # Grau Acadêmico a constar no Diploma
-    pyautogui.click(x=624, y=715)
+    pyautogui.click(x=624, y=705)
     pyautogui.write('Bacharel')
     pyautogui.press('tab')
     pyautogui.write('Bacharela')
 
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
-
-    pyautogui.click(x=1459, y=142)
+    time.sleep(2)
+    pyautogui.click(x=1459, y=181)
 
 class CentroDeCusto:
 
     # Abrir tela de Centro de Custo
     pyautogui.click(x=187, y=46)
-    pyautogui.click(x=237, y=703)
-    pyautogui.click(x=539, y=349)
+    pyautogui.click(x=256, y=704)
+    pyautogui.click(x=533, y=308)
     time.sleep(1.5)
-    pyautogui.click(x=733, y=423)
+    # Cadastra o Centro de Custo
+    pyautogui.press('tab')
+    pyautogui.press('space')
     pyautogui.write(nomeCadastros)
     pyautogui.press('tab')
     pyautogui.write(codigoCentroCusto)
@@ -169,16 +349,18 @@ class CentroDeCusto:
         pyautogui.press('s')
     time.sleep(2)
 
+    pyautogui.click(x=1338 ,y=316)
+
 
 class criarPeriodo:
     time.sleep(1)
-    pyautogui.click(x=106, y=50)
-    pyautogui.click(x=161, y=366)
+    pyautogui.click(x=106, y=40)
+    pyautogui.click(x=161, y=272)
     
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('i')
     
-    pyautogui.click(x=675, y=316)
+    pyautogui.click(x=675, y=338)
     pyautogui.write(nomeCadastros)
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.write(nomeCadastros)
@@ -194,11 +376,12 @@ class criarPeriodo:
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
 
+    time.sleep(2)
 class subPeriodo:
 
     #Cadastro do 1° Semestre    
-    pyautogui.click(x=709, y=278) #Clicando no menu academico
-    pyautogui.click(x=547, y=420)
+    pyautogui.click(x=709, y=303) #Clicando no menu academico
+    pyautogui.click(x=555, y=424)
     
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.write('1° Semestre')
@@ -218,11 +401,11 @@ class subPeriodo:
 
     with pyautogui.hold('ctrlleft'):
       pyautogui.press('s')
-
+    time.sleep(2)
 
     #Cadastro do 2° Semestre
-    pyautogui.click(x=709, y=278)
-    pyautogui.click(x=547, y=420)
+    pyautogui.click(x=709, y=303)
+    pyautogui.click(x=555, y=424)
     
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.write('2° Semestre')
@@ -242,11 +425,14 @@ class subPeriodo:
 
     with pyautogui.hold('ctrlleft'):
       pyautogui.press('s')
+    time.sleep(2)
+
+    pyautogui.click(x=1375 ,y=193)
 
 class CriarSistemaAvaliacao:
-    pyautogui.click(x=34, y=49)
-    pyautogui.moveTo(x=220, y=198)
-    pyautogui.click(x=458, y=682)
+    pyautogui.click(x=34, y=45)
+    pyautogui.moveTo(x=220, y=163)
+    pyautogui.click(x=389, y=570)
 
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('i')
@@ -254,13 +440,16 @@ class CriarSistemaAvaliacao:
     pyautogui.write(nomeCadastros) 
     pyautogui.press('tab')
     pyautogui.write(formulaSisAvaliacao)
-    pyautogui.click(x=761, y=412)
+    
+    with pyautogui.hold('ctrlleft'):
+        pyautogui.press('tab')
+
     pyautogui.write(formulaSisAvaliacao)
     
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
     
-    pyautogui.click(x=622, y=782)
+    pyautogui.click(x=639, y=775)
     pyautogui.press('tab')
     pyautogui.write('1')
     pyautogui.press('enter')
@@ -277,7 +466,9 @@ class CriarSistemaAvaliacao:
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
     
-    pyautogui.click(x=622, y=782)
+    time.sleep(2)
+
+    pyautogui.click(x=639, y=775)
     pyautogui.press('tab')
     pyautogui.write('1')
     pyautogui.press('enter')
@@ -293,6 +484,8 @@ class CriarSistemaAvaliacao:
 
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
+
+    time.sleep(2)
 
     #Adicionando o sitema de avaliação no Periodo Letivo
 
